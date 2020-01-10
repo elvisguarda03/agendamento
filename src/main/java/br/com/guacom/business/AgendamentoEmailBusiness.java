@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import br.com.guacom.dao.AgendamentoEmailDao;
 import br.com.guacom.entity.AgendamentoEmail;
@@ -19,7 +20,7 @@ public class AgendamentoEmailBusiness {
 		return dao.findAll();
 	}
 	
-	public void save(AgendamentoEmail agendamentoEmail) {
+	public void save(@Valid AgendamentoEmail agendamentoEmail) {
 		agendamentoEmail.setIsSent(false);
 		dao.save(agendamentoEmail);
 	}

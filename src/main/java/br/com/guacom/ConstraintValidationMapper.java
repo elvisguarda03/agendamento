@@ -2,6 +2,7 @@ package br.com.guacom;
 
 import java.util.stream.Collectors;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -21,9 +22,8 @@ public class ConstraintValidationMapper implements ExceptionMapper<ConstraintVio
 							.build(exception
 								.getConstraintViolations()
 								.stream()
-								.map(c -> c.getMessage())
+								.map(ConstraintViolation::getMessage)
 								.collect(Collectors.toList())))
 				.build();
 	}
-
 }

@@ -6,6 +6,7 @@ import java.util.List;
 public class MensagemErroDto {
 	private List<String> mensagens;
 	private Date dataErro;
+	
 	public List<String> getMensagens() {
 		return mensagens;
 	}
