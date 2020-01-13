@@ -14,17 +14,17 @@ public class AgendamentoEmail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Email
-	@NotBlank
+	@Email(message = "Digite um E-mail válido")
+	@NotBlank(message = "O E-mail deve ser informado")
 	@Column
 	private String email;
 	
 	@Column
-	@NotBlank
+	@NotBlank(message = "O Assunto deve ser informado")
 	private String assunto;
 	
 	@Column
-	@NotBlank
+	@NotBlank(message = "A Mensagem deve ser informada")
 	private String mensagem;
 	
 	@Column

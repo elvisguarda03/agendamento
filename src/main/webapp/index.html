@@ -99,7 +99,7 @@
 
 
                         axios
-                            .post(this.$url + 'agendamentoemail',data, config )
+                            .post(this.$url + 'agendamentoemail', data, config )
                             .then(response => {
                                 carregarAgendamentos(this);
                                 this.limparForm();

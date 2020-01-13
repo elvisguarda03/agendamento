@@ -9,8 +9,14 @@ import javax.ws.rs.core.Application;
  * @author rhuanrocha
  */
 
-
-@ApplicationPath("resources")
+@ApplicationPath("/resources")
 public class JAXRSConfiguration extends Application {
 
+//	@Override
+//	public Set<Class<?>> getClasses() {
+//		Set<Class<?>> classes = new HashSet<Class<?>>();
+//		classes.add(AgendamentoEmailResource.class);
+//		
+//		return classes;
+//	}
 }

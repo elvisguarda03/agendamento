@@ -1,5 +1,6 @@
 package br.com.guacom;
 
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
@@ -13,9 +14,12 @@ import br.com.guacom.dto.MensagemErroDto;
 
 @Provider
 public class ConstraintValidationMapper implements ExceptionMapper<ConstraintViolationException> {
-
+	private Logger logger = Logger.getLogger(ConstraintValidationMapper.class.getName());
+	
 	@Override
 	public Response toResponse(ConstraintViolationException exception) {
+		logger.info(exception.getMessage());
+		
 		return Response
 				.status(Status.BAD_REQUEST)
 				.entity(MensagemErroDto
