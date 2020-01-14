@@ -1,5 +1,7 @@
 package br.com.guacom.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class AgendamentoEmail {
+public class AgendamentoEmail implements Serializable {
+	private static final long serialVersionUID = -1252516200618021273L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -52,5 +56,21 @@ public class AgendamentoEmail {
 
 	public void setIsSent(Boolean isSent) {
 		this.isSent = isSent;
+	}
+	
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+	
+	public String getAssunto() {
+		return assunto;
+	}
+	
+	public void setAssunto(String assunto) {
+		this.assunto = assunto;
 	}
 }

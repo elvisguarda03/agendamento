@@ -14,7 +14,7 @@ import br.com.guacom.dto.MensagemErroDto;
 
 @Provider
 public class ConstraintValidationMapper implements ExceptionMapper<ConstraintViolationException> {
-	private Logger logger = Logger.getLogger(ConstraintValidationMapper.class.getName());
+	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	@Override
 	public Response toResponse(ConstraintViolationException exception) {

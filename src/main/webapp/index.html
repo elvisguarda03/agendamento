@@ -76,12 +76,12 @@
                     agendamentos: [],
                     mensagem : null,
                     erro: false,
-                    form:{
-                        email:'',
-                        assunto:'',
-                        mensagem:'',
+                    form: {
+                        email: '',
+                        assunto: '',
+                        mensagem: '',
                         erro: false,
-                        mensagemErros:''
+                        mensagemErros: ''
                     }
 
                 },
@@ -107,6 +107,7 @@
                             .catch(error => {
 
                                 this.form.erro = true;
+
                                 if (error.response) {
                                     this.form.mensagemErros = error.response.data.mensagens;
                                 }
@@ -119,11 +120,11 @@
                     },
                     limparForm: function (){
                         this.form = {
-                            email:'',
-                            assunto:'',
-                            mensagem:'',
+                            email: '',
+                            assunto: '',
+                            mensagem: '',
                             erro: false,
-                            mensagemErros:''
+                            mensagemErros: ''
                         }
                     }
                 },

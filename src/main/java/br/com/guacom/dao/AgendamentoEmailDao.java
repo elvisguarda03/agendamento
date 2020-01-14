@@ -1,6 +1,7 @@
 package br.com.guacom.dao;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -20,7 +21,7 @@ public class AgendamentoEmailDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	private Logger logger = Logger.getLogger(AgendamentoEmailDao.class.getName());
+	private Logger logger = Logger.getLogger(getClass().getName());
 
 	public List<AgendamentoEmail> findAll() {
 		List<AgendamentoEmail> agendamentos =  entityManager
@@ -40,7 +41,18 @@ public class AgendamentoEmailDao {
 				.isEmpty() == false;
 	}
 	
+	public List<AgendamentoEmail> findByIsSent() {
+		return entityManager.createQuery("FROM AgendamentoEmail", AgendamentoEmail.class)
+				.getResultList();
+	}
+	
 	public void save(AgendamentoEmail agendamentoEmail) {
-		entityManager.persist(agendamentoEmail);
+		if (Objects.isNull(agendamentoEmail.getId())) {
+			entityManager.persist(agendamentoEmail);
+		
+			return;
+		}
+		
+		entityManager.merge(agendamentoEmail);
 	}
 }

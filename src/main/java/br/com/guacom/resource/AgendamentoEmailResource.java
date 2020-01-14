@@ -20,7 +20,7 @@ public class AgendamentoEmailResource {
 
 	@GET
 	@Produces(APPLICATION_JSON)
-	public Response listarAgendamentosEmail() {
+	public Response listarAgendamentosEmail() throws BusinessException {
 		return Response
 				.ok(business.findAll())
 				.build();
