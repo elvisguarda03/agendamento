@@ -5,6 +5,10 @@ import java.util.Optional;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
@@ -17,6 +21,7 @@ import br.com.guacom.dao.AgendamentoEmailDao;
 import br.com.guacom.entity.AgendamentoEmail;
 import br.com.guacom.exception.BusinessException;
 
+@TransactionManagement(TransactionManagementType.CONTAINER)
 @Stateless
 public class AgendamentoEmailBusiness {
 //	private Logger logger = Logger.getLogger(AgendamentoEmailBusiness.class.getName());
@@ -51,6 +56,10 @@ public class AgendamentoEmailBusiness {
 		return dao.findByIsSent();
 	}
 	
+	//Abrindo uma nova transação para essa operação.
+	
+//	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void save(@Valid AgendamentoEmail agendamentoEmail) throws BusinessException {
 		if (dao.existsByEmail(agendamentoEmail.getEmail())) {
 			throw new BusinessException("E-mail existente na base de dados.");
@@ -62,6 +71,7 @@ public class AgendamentoEmailBusiness {
 //		logger.info("Agendamento para o e-mail " + agendamentoEmail.getEmail() + " salvo");
 	}
 	
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void update(@Valid AgendamentoEmail agendamentoEmail) {
 		agendamentoEmail.setIsSent(true);
 		dao.save(agendamentoEmail);

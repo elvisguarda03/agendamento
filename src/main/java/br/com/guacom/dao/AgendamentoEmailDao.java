@@ -34,7 +34,8 @@ public class AgendamentoEmailDao {
 	}
 	
 	public Boolean existsByEmail(String email) {
-		Query query = entityManager.createQuery("FROM AgendamentoEmail a where a.email =: email AND a.isSent = false");
+		Query query = entityManager.createQuery(
+				"FROM AgendamentoEmail a where a.email =: email AND a.isSent = false");
 		query.setParameter("email", email);
 		
 		return query.getResultList()

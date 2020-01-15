@@ -20,7 +20,9 @@ public class BusinessExceptionMapper implements ExceptionMapper<BusinessExceptio
 		logger.info(exception.getMessage());
 		
 		return Response.status(BAD_REQUEST)
-				.entity(MensagemErroDto.build(exception.getMessages()))
+				.entity(MensagemErroDto.Builder.builder()
+						.mensagens(exception.getMessages())
+						.build())
 				.build();
 	}
 }

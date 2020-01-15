@@ -22,12 +22,13 @@ public class ConstraintValidationMapper implements ExceptionMapper<ConstraintVio
 		
 		return Response
 				.status(Status.BAD_REQUEST)
-				.entity(MensagemErroDto
-							.build(exception
-								.getConstraintViolations()
-								.stream()
-								.map(ConstraintViolation::getMessage)
-								.collect(Collectors.toList())))
+				.entity(MensagemErroDto.Builder.builder()
+							.mensagens(exception
+									.getConstraintViolations()
+									.stream()
+									.map(ConstraintViolation::getMessage)
+									.collect(Collectors.toList()))
+							.build())
 				.build();
 	}
 }

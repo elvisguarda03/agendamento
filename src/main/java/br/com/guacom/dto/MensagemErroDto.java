@@ -20,11 +20,38 @@ public class MensagemErroDto {
 		this.dataErro = dataErro;
 	}
 	
-	public static MensagemErroDto build(List<String> mensagens) {
-		MensagemErroDto mensagemErro = new MensagemErroDto();
-		mensagemErro.setMensagens(mensagens);
-		mensagemErro.setDataErro(new Date());
-	
-		return mensagemErro;
+	public final static class Builder {
+		private List<String> mensagens;
+		private Date dataErro;
+		
+		public static Builder builder() {
+			return new Builder();
+		}
+		
+		public Builder mensagens(List<String> mensagens) {
+			this.mensagens = mensagens;
+			return this;
+		}
+		
+		public Builder dataErro() {
+			this.dataErro = new Date();
+			return this;
+		}
+		
+		public MensagemErroDto build() {
+			MensagemErroDto mensagemErro = new MensagemErroDto();
+			mensagemErro.setMensagens(mensagens);
+			mensagemErro.setDataErro(new Date());
+		
+			return mensagemErro;
+		}
 	}
+	
+//	public static MensagemErroDto build(List<String> mensagens) {
+//		MensagemErroDto mensagemErro = new MensagemErroDto();
+//		mensagemErro.setMensagens(mensagens);
+//		mensagemErro.setDataErro(new Date());
+//	
+//		return mensagemErro;
+//	}
 }
