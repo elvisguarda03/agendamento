@@ -13,7 +13,7 @@ import javax.validation.ConstraintViolationException;
 public class LoggerInterceptor {
 
 	@AroundInvoke
-	public Object proccess(InvocationContext context) throws Exception {
+	public Object process(InvocationContext context) throws Exception {
 		final java.util.logging.Logger logger = java.util.logging.Logger
 				.getLogger(context.getTarget().getClass().getName());
 

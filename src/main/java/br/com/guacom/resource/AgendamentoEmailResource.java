@@ -2,12 +2,18 @@ package br.com.guacom.resource;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
+import java.net.URI;
+
 import javax.inject.Inject;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 
 import br.com.guacom.business.AgendamentoEmailBusiness;
 import br.com.guacom.entity.AgendamentoEmail;
@@ -28,11 +34,43 @@ public class AgendamentoEmailResource {
 
 	@POST
 	@Produces(APPLICATION_JSON)
-	public Response saveEmail(AgendamentoEmail agendamentoEmail) throws BusinessException {
+	public Response saveAgendamentoEmail(AgendamentoEmail agendamentoEmail) throws BusinessException {
 		business.save(agendamentoEmail);
 		
+		URI location = UriBuilder.fromResource(getClass()).path("/{id}")
+				.build(agendamentoEmail.getId());
+		
 		return Response
-				.status(201)
+				.created(location)
+				.entity(agendamentoEmail)
+				.build();
+	}
+	
+	@Path("/{id}")
+	@GET
+	@Produces(APPLICATION_JSON)
+	public Response findById(@PathParam("id") Integer id) {
+		return Response.ok(business.findById(id))
+				.build();
+	}
+	
+	@PUT
+	@Produces(APPLICATION_JSON)
+	public Response update(AgendamentoEmail agendamentoEmail) {
+		business.update(agendamentoEmail);
+		
+		return Response.ok()
+				.entity(agendamentoEmail)
+				.build();
+	}
+	
+	@Path("/{id}")
+	@DELETE
+	@Produces(APPLICATION_JSON)
+	public Response delete(@PathParam("id") Integer id) {
+		business.deleteById(id);
+		
+		return Response.noContent()
 				.build();
 	}
 }

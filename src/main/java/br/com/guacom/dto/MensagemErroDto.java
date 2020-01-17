@@ -2,6 +2,7 @@ package br.com.guacom.dto;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class MensagemErroDto {
 	private List<String> mensagens;
@@ -41,7 +42,7 @@ public class MensagemErroDto {
 		public MensagemErroDto build() {
 			MensagemErroDto mensagemErro = new MensagemErroDto();
 			mensagemErro.setMensagens(mensagens);
-			mensagemErro.setDataErro(new Date());
+			mensagemErro.setDataErro(Objects.isNull(dataErro) ? new Date() : dataErro);
 		
 			return mensagemErro;
 		}

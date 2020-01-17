@@ -93,4 +93,12 @@ public class AgendamentoEmailBusiness {
 			throw new RuntimeException(me);
 		}
 	}
+
+	public AgendamentoEmail findById(Integer id) {
+		return dao.findById(id);
+	}
+
+	public void deleteById(Integer id) {
+		dao.deleteById(id);
+	}
 }

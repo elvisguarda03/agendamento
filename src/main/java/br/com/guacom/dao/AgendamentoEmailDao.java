@@ -35,7 +35,7 @@ public class AgendamentoEmailDao {
 	
 	public Boolean existsByEmail(String email) {
 		Query query = entityManager.createQuery(
-				"FROM AgendamentoEmail a where a.email =: email AND a.isSent = false");
+				"FROM AgendamentoEmail a WHERE a.email =: email AND a.isSent = false");
 		query.setParameter("email", email);
 		
 		return query.getResultList()
@@ -55,5 +55,13 @@ public class AgendamentoEmailDao {
 		}
 		
 		entityManager.merge(agendamentoEmail);
+	}
+
+	public AgendamentoEmail findById(Integer id) {
+		return entityManager.find(AgendamentoEmail.class, id);
+	}
+
+	public void deleteById(Integer id) {
+		entityManager.remove(findById(id));
 	}
 }

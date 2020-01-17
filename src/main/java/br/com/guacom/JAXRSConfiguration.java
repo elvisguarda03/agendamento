@@ -1,4 +1,3 @@
-
 package br.com.guacom;
 
 import javax.ws.rs.ApplicationPath;
